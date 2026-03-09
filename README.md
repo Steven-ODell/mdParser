@@ -1,9 +1,9 @@
-### Important 
+# Important 
 Not expected to be a perfect parser. Just a project to learn
 
 
 Started March 7, 2026
-Plan to complete basically all expected Markdown features in next couple months
+### Plan to complete basically all expected Markdown features in next couple months
 
 This is my attempt to learn JS by forcing myself to build a Markdown conversion using HTML and JS to parse the input data with JS into HTML Markdown. Every intention to make this project practical enough for me to use in my own "Obsidian" clone I am going to hopefully attempt to build in the future to further improve my JS skills and learn things like electron and potential frameworks.
 
