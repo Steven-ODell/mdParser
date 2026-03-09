@@ -1,3 +1,7 @@
+### Important 
+Not expected to be a perfect parser. Just a project to learn
+
+
 Started March 7, 2026
 Plan to complete basically all expected Markdown features in next couple months
 
@@ -7,4 +11,4 @@ This is not being made with AI. This is me learning to do this. I am using AI to
 
 March 9
 Project now in a state where I can say it parses most common Markdown
-situations outside of tables, links, emojis, and pictures. Hope to next add some kind of Highlight but do not want to add a normal HTML <mark> but I can if needed. The idea was to make a div highlighted around the text but seems not practical unless the app will allow it? Ill have to think about that. Then after that I think tackling emojis links and photos. 
+situations outside of tables, links, emojis, and pictures. Hope to next add some kind of Highlight but do not want to add a normal <mark> HTML Highlight</mark> <"mark"> but I can if needed. The idea was to make a div highlighted around the text but seems not practical unless the app will allow it? Ill have to think about that. Then after that I think tackling emojis links and photos. 
