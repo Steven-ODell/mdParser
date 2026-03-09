@@ -5,7 +5,9 @@ const markedParserInputString = (inputText) => {
     if (fileToLines.length > 0) {
         fileToLines.forEach(k => {
             let parsedLine = k
-            if (k.startsWith("###")) {
+            if (k.startsWith("---")) {
+                parsedLine = k.replace("---", "<hr>")
+            } else if (k.startsWith("###")) {
                 parsedLine = k.replace("###", "<h3>")
                 parsedLine += "</h3>"
             } else if (k.startsWith("##")) {
@@ -26,6 +28,16 @@ const markedParserInputString = (inputText) => {
         });
     };
     let currentBlockString = currentBlock.join("")
+
+    if (currentBlockString.includes("`")) {
+        currentBlockString = currentBlockString.replace(/\`(.*?)\`/g, "<code>$1</code>")
+    };
+    if (currentBlockString.includes("~~")) {
+        currentBlockString = currentBlockString.replace(/\~\~(.*?)\~\~/g, "<del>$1</del>")
+    };
+    if (currentBlockString.includes("***")) {
+        currentBlockString = currentBlockString.replace(/\*\*\*(.*?)\*\*\*/g, "<strong><i>$1</i></strong>")
+    };
     if (currentBlockString.includes("**")) {
         currentBlockString = currentBlockString.replace(/\*\*(.*?)\*\*/g, "<strong>$1</strong>")
     };
