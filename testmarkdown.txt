@@ -1,0 +1,14 @@
+# h1 size
+## h2 size
+### h3 size
+---
+normal text
+`CodeBlock
+for i in words:
+print(i)`
+~~CrossedOUT~~
+*Italic*
+**Strong**
+***StrongItalic***
+> quotes
+- BulletPoint

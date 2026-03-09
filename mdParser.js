@@ -1,3 +1,10 @@
+const testInputArea = document.getElementById("testArea");
+const testOutputArea = document.getElementById("testDiv");
+
+testInputArea.addEventListener('input', () => {
+    testOutputArea.innerHTML = markedParserInputString(testInputArea.value)
+})
+
 const markedParserInputString = (inputText) => {
     const currentBlock = [];
     const fileToLines = (inputText).split("\n");
@@ -7,26 +14,27 @@ const markedParserInputString = (inputText) => {
             let parsedLine = k
             if (k.startsWith("---")) {
                 parsedLine = k.replace("---", "<hr>")
-            } else if (k.startsWith("###")) {
-                parsedLine = k.replace("###", "<h3>")
+            } else if (k.startsWith("### ")) {
+                parsedLine = k.replace("### ", "<h3>")
                 parsedLine += "</h3>"
-            } else if (k.startsWith("##")) {
-                parsedLine = k.replace("##", "<h2>")
+            } else if (k.startsWith("## ")) {
+                parsedLine = k.replace("## ", "<h2>")
                 parsedLine += "</h2>"
-            } else if (k.startsWith("#")) {
-                parsedLine = k.replace("#", "<h1>")
+            } else if (k.startsWith("# ")) {
+                parsedLine = k.replace("# ", "<h1>")
                 parsedLine += "</h1>"
             } else if (k.startsWith("-")) {
-                parsedLine = k.replace("-", "<li>")
+                parsedLine = k.replace("- ", "<li>")
                 parsedLine += "</li>"
-            } else if (k.startsWith(">")) {
-                parsedLine = k.replace(">", '"')
+            } else if (k.startsWith("> ")) {
+                parsedLine = k.replace("> ", '"')
                 parsedLine += '"'
                 parsedLine += "<br>"
             } else { parsedLine += "<br>" }
             currentBlock.push(parsedLine)
         });
     };
+
     let currentBlockString = currentBlock.join("")
 
     if (currentBlockString.includes("`")) {
