@@ -1,9 +1,15 @@
 const testInputArea = document.getElementById("testArea");
 const testOutputArea = document.getElementById("testDiv");
 
+const testFile = await fetch("newtestfile.txt");
+const testString = await testFile.text();
+
+testInputArea.value = testString
+
 testInputArea.addEventListener('input', () => {
     testOutputArea.innerHTML = markedParserInputString(testInputArea.value)
 })
+
 
 const markedParserInputString = (inputText) => {
     const currentBlock = [];
@@ -28,8 +34,8 @@ const markedParserInputString = (inputText) => {
                 parsedLine = k.replace("# ", "<h1>")
                 parsedLine += "</h1>"
             } else if (k.startsWith("> ")) {
-                parsedLine = k.replace("> ", '<blockquote>')
-                parsedLine += '</blockquote>'
+                parsedLine = k.replace("> ", '<blockquote>"')
+                parsedLine += '"</blockquote>'
             } else { parsedLine += "<br>" }
 
             //Create Unordered lists
