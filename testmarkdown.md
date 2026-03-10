@@ -31,6 +31,18 @@ Plain text sample
  - unordered
 3. ordered
 
+- unordered
+- unordered 
+ - unordered indented
+ - unordered indented
+- unordered
+
+1. ordered
+2. ordered
+ 1. unordered
+ 2. unordered
+3. ordered
+
 10^2^
 10~2~
 ==Highlighter==
