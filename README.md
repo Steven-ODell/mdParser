@@ -12,3 +12,6 @@ This is not being made with AI. This is me learning to do this. I am using AI to
 March 9
 Project now in a state where I can say it parses most common Markdown
 situations outside of tables, links, emojis, and pictures. Hope to next add some kind of Highlight but do not want to add a normal <mark> HTML Highlight</mark> <"mark"> but I can if needed. The idea was to make a div highlighted around the text but seems not practical unless the app will allow it? Ill have to think about that. Then after that I think tackling emojis links and photos. 
+
+## Throwing in the towel on this idea
+Figured out this is becoming an unfixable mess and i need to entirely restructure everything if i want to make anything nested and able to know HTML it should be while nested. Need to think of some kind of way to take each word and find relation in the chunk of text. 

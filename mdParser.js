@@ -18,7 +18,8 @@ const markedParserInputString = (inputText) => {
     if (fileToLines.length > 0) {
         let listGate = false
         let listGateOl = false
-        let olNum = 1
+        
+        let previousIndent = 0
         //Parse like starters and headers
         fileToLines.forEach(k => {
             let parsedLine = k
@@ -36,42 +37,51 @@ const markedParserInputString = (inputText) => {
             } else if (k.startsWith("> ")) {
                 parsedLine = k.replace("> ", '<blockquote>"')
                 parsedLine += '"</blockquote>'
-            } else { parsedLine += "<br>" }
-
+            }
+            console.log(parsedLine)
+            let currentIndent = k.length - k.trimStart().length
+            console.log(currentIndent)
             //Create Unordered lists
-            if (k.startsWith("- ") || k.startsWith(" - ")) {
-                    if (listGate === false) {
+            if ((k.trimStart()).startsWith("- ") || k.startsWith((" ").repeat(currentIndent) + "- ")) {
+                    if (listGate === false || currentIndent > previousIndent) {
                         parsedLine = parsedLine.replace("- ", "<ul><li>") + "</li>"
                         listGate = true
                     }
-                    else {
+                    else if (listGate === true && currentIndent === previousIndent) {
                         parsedLine = parsedLine.replace("- ", "<li>") + "</li>"
                     }
-            } else 
-                {if (listGate === true && !(k.startsWith(" "))) { 
+                    else if (listGate === true && currentIndent < previousIndent) {
+                        parsedLine = "</ul>" + parsedLine.replace("- ", "<li>") + "</li>"
+                    }
+            } else if (listGate === true && currentIndent === 0) { 
                 parsedLine = "</ul>" + parsedLine
                 listGate = false
                 }
-            }
-
+            let olNum = parseInt(k.trimStart())
+            
             // Check for ann ordered list number and assign it properly
-            if (k.startsWith(olNum + ". ") || k.startsWith(" " + olNum + ". ")) {
-                    if (listGateOl === false) {
+            if ((k.trimStart()).startsWith(olNum + ". ") || k.startsWith((" ").repeat(currentIndent) + olNum + ". ")) {
+                    if (listGateOl === false || currentIndent > previousIndent) {
                         parsedLine = parsedLine.replace(olNum + ". ", "<ol><li>") + "</li>"
                         listGateOl = true
 
                     }
-                    else {
+                    else if (listGateOl === true && currentIndent === previousIndent) {
                         parsedLine = parsedLine.replace(olNum + ". ", "<li>") + "</li>"
                     }
+                    else if (listGateOl === true && currentIndent < previousIndent) {
+                        parsedLine = "</ol>" + parsedLine.replace(olNum + ". ", "<li>") + "</li>"
+                    }
                 olNum += 1
-            } else 
-                {if (listGateOl === true && !(k.startsWith(" "))) { 
+            } else if (listGateOl === true && currentIndent === 0) { 
                 parsedLine = "</ol>" + parsedLine
                 listGateOl = false
                 olNum = 1
                 }
+            if (!parsedLine.endsWith(">")){
+                parsedLine += "<br>"
             }
+            previousIndent = currentIndent
             currentBlock.push(parsedLine)
         });
     };
