@@ -33,7 +33,7 @@ textarea {
 }
 
 li::marker {
-    color: aqua;
+    color: rgb(140, 104, 175);
 }
 
 blockquote {
