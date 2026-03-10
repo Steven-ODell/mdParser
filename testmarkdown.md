@@ -9,7 +9,7 @@ print(i)`
 *Italic*
 **Strong**
 ***StrongItalic***
-> quotes
+> blockquote
 - BulletPoint
 - BulletPoint2
 Plain text sample
@@ -19,5 +19,18 @@ Plain text sample
 1.Not
 2.Ordered
 
+- unordered
+- unordered 
+ 1. ordered
+ 2. ordered
+- unordered
+
+1. ordered
+2. ordered
+ - unordered
+ - unordered
+3. ordered
+
 10^2^
 10~2~
+==Highlighter==

@@ -33,34 +33,34 @@ const markedParserInputString = (inputText) => {
             } else { parsedLine += "<br>" }
 
             //Create Unordered lists
-            if (k.startsWith("- ")) {
+            if (k.startsWith("- ") || k.startsWith(" - ")) {
                     if (listGate === false) {
-                        parsedLine = "<ul><li>" + k.replace("- ", "") + "</li>"
+                        parsedLine = parsedLine.replace("- ", "<ul><li>") + "</li>"
                         listGate = true
                     }
                     else {
-                        parsedLine = "<li>" + k.replace("- ", "") + "</li>"
+                        parsedLine = parsedLine.replace("- ", "<li>") + "</li>"
                     }
             } else 
-                {if (listGate === true) { 
+                {if (listGate === true && !(k.startsWith(" "))) { 
                 parsedLine = "</ul>" + parsedLine
                 listGate = false
                 }
             }
 
             // Check for ann ordered list number and assign it properly
-            if (k.startsWith(olNum + ". ")) {
+            if (k.startsWith(olNum + ". ") || k.startsWith(" " + olNum + ". ")) {
                     if (listGateOl === false) {
-                        parsedLine = "<ol><li>" + k.replace(olNum + ". ", "") + "</li>"
+                        parsedLine = parsedLine.replace(olNum + ". ", "<ol><li>") + "</li>"
                         listGateOl = true
 
                     }
                     else {
-                        parsedLine = "<li>" + k.replace(olNum + ". ", "") + "</li>"
+                        parsedLine = parsedLine.replace(olNum + ". ", "<li>") + "</li>"
                     }
                 olNum += 1
             } else 
-                {if (listGateOl === true) { 
+                {if (listGateOl === true && !(k.startsWith(" "))) { 
                 parsedLine = "</ol>" + parsedLine
                 listGateOl = false
                 olNum = 1
